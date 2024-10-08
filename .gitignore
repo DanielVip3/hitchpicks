@@ -43,5 +43,11 @@ nb-configuration.xml
 # TLS Certificates
 .certs/
 
+# Quinoa
+.quinoa
+
 # Web Bundler
 node_modules/
+
+# For Tailwind
+dist/

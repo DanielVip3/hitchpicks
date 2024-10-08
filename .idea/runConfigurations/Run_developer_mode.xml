@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run developer mode" type="CompoundRunConfigurationType">
+    <toRun name="hitchpicks" type="QuarkusRunConfigurationType" />
+    <toRun name="Tailwind watch" type="ShConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
