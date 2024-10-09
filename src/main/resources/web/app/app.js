@@ -15,3 +15,9 @@
 
 // This app will be bundled by the Web-Bundler (including the imported libraries) and available using the {#bundle /} tag
 // for more information about how to use the {#bundle /} tag, see https://docs.quarkiverse.io/quarkus-web-bundler/dev/advanced-guides.html#bundle-tag
+
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+
+Alpine.start();
