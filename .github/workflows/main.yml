@@ -1,0 +1,38 @@
+name: CI workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up PostgreSQL database
+        uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: '16'
+          postgresql db: hitchpicks
+          postgresql user: hitchpicks
+          postgresql password: admin
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Maven
+        run: sudo apt-get update && sudo apt-get install -y maven
+
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Run Checkstyle
+        run: mvn checkstyle:check
+
+      - name: Run tests
+        run: mvn test
