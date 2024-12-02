@@ -1,8 +1,16 @@
-<header class="flex h-[100px] w-full justify-between items-center px-32 font-medium">
-    <a href="/" class="cursor-pointer flex items-center gap-x-3.5">
-        <img alt="Hitchpicks logo" src="/assets/Hitchpicks-Transparent-NoTitle.png" class="w-[45px] h-[45px]" />
-        <h1 class="text-3xl">Hitchpicks</h1>
-    </a>
+<%-- Whether the user is logged in or not (in the future, will be replaced with actual user data object) --%>
+@param boolean logged
+
+<%-- Whether the navbar is showing in admin page or not (in admin page, the logo gets hidden) --%>
+@param boolean admin = false
+
+<header class="flex h-[100px] w-full items-center px-32 font-medium ${admin ? "justify-end" : "justify-between"}">
+    @if (!admin)
+        <a href="/" class="cursor-pointer flex items-center gap-x-3.5">
+            <img alt="Hitchpicks logo" src="/assets/Hitchpicks-Transparent-NoTitle.png" class="w-[45px] h-[45px]" />
+            <h1 class="text-3xl">Hitchpicks</h1>
+        </a>
+    @endif
 
     <section class="flex items-center h-10 text-base">
         <div class="relative w-[450px] h-full mr-6">
@@ -16,12 +24,23 @@
             </div>
         </div>
 
-        <a href="/login" class="cursor-pointer py-3 px-4 h-full inline-flex items-center gap-x-2 rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none">
-            Log-in
-        </a>
+        @if (logged)
+            <section class="flex items-end gap-x-2 ml-4">
+                <div class="text-base flex flex-col text-right leading-5 mb-2">
+                    <span class="font-bold">@Frainaman</span>
+                    <span class="font-normal">Admin</span>
+                </div>
 
-        <a href="/signup" class="cursor-pointer py-3 px-6 h-full inline-flex items-center gap-x-2 font-normal rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-800 focus:outline-none focus:bg-primary-800 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-black/25">
-            Sign up
-        </a>
+                <img alt="Default avatar" class="inline-block rounded-full size-[65px] border border-gray-400" src="/assets/avatar.png" />
+            </section>
+        @else
+            <a href="/login" class="cursor-pointer py-3 px-4 h-full inline-flex items-center gap-x-2 rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none">
+                Log-in
+            </a>
+
+            <a href="/signup" class="cursor-pointer py-3 px-6 h-full inline-flex items-center gap-x-2 font-normal rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-800 focus:outline-none focus:bg-primary-800 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-black/25">
+                Sign up
+            </a>
+        @endif
     </section>
 </header>

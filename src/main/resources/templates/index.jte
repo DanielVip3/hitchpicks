@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="/generated/css/global.css">
     </head>
     <body class="flex flex-col min-h-screen">
-        @template.components.navbar()
+        @template.components.navbar(logged = true, admin = false)
 
         <div class="flex-grow">
             <div class="mt-2 bg-gray-800 text-sm text-white rounded-lg p-4" role="alert" tabindex="-1" aria-labelledby="hs-solid-color-dark-label">
