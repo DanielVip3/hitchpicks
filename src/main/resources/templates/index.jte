@@ -15,5 +15,7 @@
         </div>
 
         <script src="/generated/js/preline.js"></script>
+
+        @template.components.footer()
     </body>
 </html>
