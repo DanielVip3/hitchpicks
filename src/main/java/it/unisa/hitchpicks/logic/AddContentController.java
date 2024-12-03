@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AddContentController {
-
   @GetMapping("/admin/addcontent")
   public String addContent() {
     return "addcontent";
