@@ -1,71 +1,78 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <title>Hitchpicks</title>
+        <title>Hitchpicks</title>
 
-    <link rel="stylesheet" href="/generated/css/global.css">
-</head>
-<body class="flex flex-col min-h-screen">
-@template.components.navbar()
+        <link rel="stylesheet" href="/generated/css/global.css">
+    </head>
+    <body class="flex flex-col min-h-screen">
+        @template.components.navbar()
 
-<div class="flex-grow">
-    <!-- Full-width fluid until the `md` breakpoint, then lock to container -->
-    <div class="md:container md:mx-auto flex items-center justify-center">
-        <!-- ... -->
-        <div class="w-[400px] flex flex-col bg-white border border-t-4  border-t-primary-600  shadow-sm rounded-xl">
-           <div class="p-5 md:p-5 mt-3">
-                <h3 class="text-2xl font-bold text-gray-800 text-center mb-8">
-                    Login
-                </h3>
-                <form class="max-w-sm mx-auto space-y-6 flex flex-col items-center">
-                    <div class="max-w-sm space-y-3">
-                        <div class="relative">
-                            <input type="email"
-                                   class="peer py-4 px-4 ps-11 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                   placeholder="Enter email">
-                            <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
-                                <svg class="shrink-0 size-4 text-gray-500"
-                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round">
-                                    <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
+        <div class="flex-grow">
+            <div class="md:container md:mx-auto flex items-center justify-center">
+                <div class="w-[400px] flex flex-col bg-white border border-t-4 border-t-primary-600 shadow-sm rounded-xl mt-16 shadow-xl shadow-black/25">
+                    <div class="p-4 md:p-5 mt-3">
+                        <h3 class="text-2xl font-bold text-gray-800 text-left mb-8">Log-in</h3>
+
+                        <form class="max-w-lg mx-auto space-y-6 flex flex-col items-center">
+                            <div class="mx-auto space-y-3 w-full">
+                                <label for="input-label" class="block text-sm font-medium mb-2">Email</label>
+                                <div class="relative">
+                                    <input type="email"
+                                           id="input-label"
+                                           class="peer py-4 px-4 ps-11 block w-full bg-gray-100 border-gray-600 rounded-lg text-sm focus:border-primary-600 focus:ring-primary-600 disabled:opacity-50 disabled:pointer-events-none required"
+                                           placeholder="your@mail"
+                                           required>
+
+                                    <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+
+                                <label for="password" class="block text-sm font-medium mb-2">Password</label>
+                                <div class="relative">
+                                    <input type="password" id="password"
+                                           class="peer py-4 px-4 pr-10 ps-11 block w-full bg-gray-100 border-gray-600 rounded-lg text-sm focus:border-primary-600 focus:ring-primary-600 disabled:opacity-50 disabled:pointer-events-none overflow-hidden text-ellipsis"
+                                           placeholder="password1234"
+                                           minlength="4"
+                                           maxlength="64"
+                                           required>
+
+                                    <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 0 1 3 3m3 0a6 6 0 0 1-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1 1 21.75 8.25Z"/>
+                                        </svg>
+                                    </div>
+
+                                    <div class="absolute inset-y-0 end-0 flex items-center pr-4 pl-4 ml-4">
+                                        <svg id="togglePassword" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 cursor-pointer">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                        </svg>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="relative">
-                            <input type="password"
-                                   class="peer py-4 px-4 ps-11 block w-full bg-gray-100 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                                   placeholder="Enter password">
-                            <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
-                                <svg class="shrink-0 size-4 text-gray-500"
-                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round">
-                                    <path d="M2 18v3c0 .6.4 1 1 1h4v-3h3v-3h2l1.4-1.4a6.5 6.5 0 1 0-4-4Z"></path>
-                                    <circle cx="16.5" cy="7.5" r=".5"></circle>
+                            <button type="submit" class="ml-auto cursor-pointer py-2 px-6 text-sm h-full inline-flex items-center gap-x-2 font-normal rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-800 focus:outline-none focus:bg-primary-800 disabled:opacity-50 disabled:pointer-events-none shadow-md shadow-black/25">
+                                Log-in
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/>
                                 </svg>
-                            </div>
-                        </div>
+                            </button>
+                        </form>
+                        <p class="mt-8 text-slate-800 text-xs opacity-70">Not registered? <a class="text-blue-600 hover:text-blue-500 decoration-2 hover:underline focus:outline-none focus:underline 0 text-xs text-centered opacity-90" href="#">Create an account</a></p>
                     </div>
-
-                    <button type="submit"
-                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-primary-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
-                        Log In
-                    </button>
-                </form>
-
-               <p><a class="text-blue-600 hover:text-blue-500 decoration-2 hover:underline focus:outline-none focus:underline opacity-90 text-xs text-centered" href="#">Not registered? Create an account</a></p>
-
-           </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-@template.components.footer()
 
-<script src="/generated/js/preline.js"></script>
-</body>
+        @template.components.footer()
+
+        <script src="/generated/js/preline.js"></script>
+        <script src="/js/password-toggle.js"></script>
+    </body>
 </html>
