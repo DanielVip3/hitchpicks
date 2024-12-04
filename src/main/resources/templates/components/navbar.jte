@@ -31,7 +31,9 @@
                     <span class="font-normal">Admin</span>
                 </div>
 
-                <img alt="Default avatar" class="inline-block rounded-full size-[65px] border border-gray-400" src="/assets/avatar.png" />
+                <span class="inline-flex items-center justify-center size-[65px] rounded-full bg-yellow-500 font-semibold text-white text-3xl border border-gray-500 leading-none">
+                  F
+                </span>
             </section>
         @else
             <a href="/login" class="cursor-pointer py-3 px-4 h-full inline-flex items-center gap-x-2 rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none">
