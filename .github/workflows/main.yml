@@ -12,12 +12,12 @@ jobs:
 
     steps:
       - name: Set up PostgreSQL database
-        uses: harmon758/postgresql-action@v1
+        uses: ikalnytskyi/action-setup-postgres@v7
         with:
-          postgresql version: '16'
-          postgresql db: hitchpicks
-          postgresql user: hitchpicks
-          postgresql password: admin
+          postgres-version: '16'
+          database: hitchpicks
+          username: hitchpicks
+          password: admin
 
       - name: Checkout code
         uses: actions/checkout@v3
