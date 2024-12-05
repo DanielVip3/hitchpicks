@@ -7,7 +7,7 @@ This README is W.I.P.!
 ## Commit structure
 
 Commit structure to follow:  
-"**\<emoji\>** - meaningful title"  
+"**\<emoji\>** meaningful title"  
 "brief description of changes  
 ..."
 
@@ -20,6 +20,7 @@ Emojis are roughly based on [Gitmoji](https://gitmoji.dev/).
 🗃️ - Database  
 💄 - UI and styles  
 ♻️ - Refactoring  
+🏗️ - Build pipeline  
 💚 - CI
 
 ## How to install
