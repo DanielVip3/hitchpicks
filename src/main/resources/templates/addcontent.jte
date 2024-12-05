@@ -6,8 +6,6 @@
         <link rel="stylesheet" href="/generated/css/global.css">
     </head>
     <body>
-    @template.components.navbar()
-
         <div class="w-[1400px] p-4 mb-4 bg-white border border-zinc-300 border-t-4 border-t-primary-600 rounded-lg shadow-lg justify-center items-center flex flex-col mx-auto">
             <div class="my-4 px-12 w-full">
                 <span class="text-[32px] font-medium">Add content</span>
