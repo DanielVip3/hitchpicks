@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="/generated/css/global.css">
     </head>
     <body class="flex flex-col min-h-screen">
-        @template.components.navbar()
+        @template.components.navbar(logged = false, admin = false)
 
         <div class="flex-grow">
             <div class="md:container md:mx-auto flex items-center justify-center">
