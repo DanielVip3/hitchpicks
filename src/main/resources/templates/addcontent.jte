@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/generated/css/global.css">
     </head>
     <body>
+    <form method="POST" action="/admin/addcontent">
         <div class="w-[1400px] p-4 mb-4 bg-white border border-zinc-300 border-t-4 border-t-primary-600 rounded-lg shadow-lg justify-center items-center flex flex-col mx-auto">
             <div class="my-4 px-12 w-full">
                 <span class="text-[32px] font-medium">Add content</span>
@@ -23,9 +24,7 @@
                         <div>
                             <label for="hs-trailing-button-add-on-with-icon-and-button" class="sr-only">Label</label>
                             <div class="relative flex rounded-lg shadow-sm">
-                                <input type="text"
-                                       name="hs-trailing-button-add-on-with-icon-and-button"
-                                       class="py-3 px-4 ps-11 block w-full h-11 border-gray-400 shadow-sm rounded-s-lg text-[15px] font-medium placeholder:font-light focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                                <input type="text" name="idIMDB" class="py-3 px-4 ps-11 block w-full h-11 border-gray-400 shadow-sm rounded-s-lg text-[15px] font-medium placeholder:font-light focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                        placeholder="Search IMDB Identifier...">
                                 <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none z-20 ps-4">
                                     <svg class="shrink-0 size-4 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -46,7 +45,7 @@
                             </svg>
                         </div>
                         <div class="space-y-3">
-                            <input type="text" class="py-3 px-4 block w-full h-11 border-gray-400 rounded-lg text-[15px] font-medium focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none placeholder:font-light" placeholder="Insert title...">
+                            <input type="text" name="title" class="py-3 px-4 block w-full h-11 border-gray-400 rounded-lg text-[15px] font-medium focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none placeholder:font-light" placeholder="Insert title...">
                         </div>
                     </div>
 
@@ -63,7 +62,7 @@
                                 <span class="px-4 inline-flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-400 bg-gray-200 text-[15px]">
                                     <span class="text-[15px] text-black">https://</span>
                                 </span>
-                                <input type="text" name="hs-trailing-button-add-on-with-leading-and-trailing"
+                                <input type="text" name="image"
                                        class="py-3 px-4 block w-full h-11 border-gray-400 shadow-sm rounded-r-lg text-[15px]  font-medium placeholder:font-light focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                        placeholder="Insert URL...">
                             </div>
@@ -86,7 +85,7 @@
                             </svg>
                         </div>
                         <div class=" space-y-3 relative">
-                            <textarea id="synopsis"
+                            <textarea id="synopsis" name="synopsis"
                                       class="py-3 px-4 block w-full border-gray-400 rounded-lg text-[15px] h-[235px] placeholder:font-light focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                       rows="9" placeholder="Insert synopsis..." style="resize: none;"
                                       maxlength="500" oninput="updateCounter()"></textarea>
@@ -103,7 +102,7 @@
                             </svg>
                         </div>
                         <div class=" space-y-3">
-                            <input type="text" class="py-3 px-4 block w-full h-11 border-gray-400 rounded-lg text-[15px] font-medium focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none placeholder:font-light" placeholder="Insert director...">
+                            <input type="text" name="director" class="py-3 px-4 block w-full h-11 border-gray-400 rounded-lg text-[15px] font-medium focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none placeholder:font-light" placeholder="Insert director...">
                         </div>
                     </div>
                     <div class="mb-6">
@@ -114,7 +113,7 @@
                             </svg>
                         </div>
                         <label class="hidden" for="hs-platforms-input">Platforms label</label>
-                        <select multiple="" data-hs-select='{
+                        <select name="streamingPlatforms" multiple="" data-hs-select='{
                               "placeholder": "Select platforms...",
                               "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300",
                               "optionClasses": "py-2 px-4 w-full text-sm text-gray-800 cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50",
@@ -127,12 +126,12 @@
                               "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-neutral-600 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                             }' class="hidden">
                             <option value="" class="text-[15px] font-light text-neutral-600 ">Choose</option>
-                            <option value="netflix" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/netflix.svg\" alt=\"Netflix\" />"}'>Netflix</option>
-                            <option value="hulu" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/hulu.svg\" alt=\"Hulu\" />"}'>Hulu</option>
-                            <option value="prime" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/prime.svg\" alt=\"Prime Video\" />"}'>Prime Video</option>
-                            <option value="disney" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/disney.svg\" alt=\"Disney+\" />"}'>Disney+</option>
-                            <option value="rakuten" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/rakuten.svg\" alt=\"Rakuten TV\" />"}'>Rakuten TV</option>
-                            <option value="apple" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/apple.svg\" alt=\"Apple TV\" />"}'>Apple TV</option>
+                            <option value="NETFLIX" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/netflix.svg\" alt=\"Netflix\" />"}'>Netflix</option>
+                            <option value="DISNEY" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/hulu.svg\" alt=\"Hulu\" />"}'>Hulu</option>
+                            <option value="PRIMEVIDEO" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/prime.svg\" alt=\"Prime Video\" />"}'>Prime Video</option>
+                            <option value="RAKUTENTV" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/disney.svg\" alt=\"Disney+\" />"}'>Disney+</option>
+                            <option value="APPLETV" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/rakuten.svg\" alt=\"Rakuten TV\" />"}'>Rakuten TV</option>
+                            <option value="HULU" data-hs-select-option='{"icon": "<img class=\"inline-block size-5\" src=\"/assets/apple.svg\" alt=\"Apple TV\" />"}'>Apple TV</option>
                         </select>
                     </div>
                     <div class="mb-6">
@@ -142,7 +141,7 @@
                                 <path fill-rule="evenodd" d="M19.449 8.448 16.388 11a4.52 4.52 0 0 1 0 2.002l3.061 2.55a8.275 8.275 0 0 0 0-7.103ZM15.552 19.45 13 16.388a4.52 4.52 0 0 1-2.002 0l-2.55 3.061a8.275 8.275 0 0 0 7.103 0ZM4.55 15.552 7.612 13a4.52 4.52 0 0 1 0-2.002L4.551 8.45a8.275 8.275 0 0 0 0 7.103ZM8.448 4.55 11 7.612a4.52 4.52 0 0 1 2.002 0l2.55-3.061a8.275 8.275 0 0 0-7.103 0Zm8.657-.86a9.776 9.776 0 0 1 1.79 1.415 9.776 9.776 0 0 1 1.414 1.788 9.764 9.764 0 0 1 0 10.211 9.777 9.777 0 0 1-1.415 1.79 9.777 9.777 0 0 1-1.788 1.414 9.764 9.764 0 0 1-10.212 0 9.776 9.776 0 0 1-1.788-1.415 9.776 9.776 0 0 1-1.415-1.788 9.764 9.764 0 0 1 0-10.212 9.774 9.774 0 0 1 1.415-1.788A9.774 9.774 0 0 1 6.894 3.69a9.764 9.764 0 0 1 10.211 0ZM14.121 9.88a2.985 2.985 0 0 0-1.11-.704 3.015 3.015 0 0 0-2.022 0 2.985 2.985 0 0 0-1.11.704c-.326.325-.56.705-.704 1.11a3.015 3.015 0 0 0 0 2.022c.144.405.378.785.704 1.11.325.326.705.56 1.11.704.652.233 1.37.233 2.022 0a2.985 2.985 0 0 0 1.11-.704c.326-.325.56-.705.704-1.11a3.016 3.016 0 0 0 0-2.022 2.985 2.985 0 0 0-.704-1.11Z" clip-rule="evenodd" />
                             </svg>
                         </div>
-                        <select data-hs-select='{
+                        <select name="state" data-hs-select='{
                               "placeholder": "<span class=\"text-gray-500 text-sm\">Select status...</span>",
                               "toggleTag": "<button type=\"button\" aria-expanded=\"false\"></button>",
                               "toggleClasses": "hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50 relative py-3 ps-4 pe-9 flex gap-x-2 text-nowrap w-full cursor-pointer bg-white border border-gray-400 rounded-lg text-start text-black text-[15px] focus:outline-none focus:ring-2 focus:ring-blue-500",
@@ -152,11 +151,10 @@
                               "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-neutral-600 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                             }' class="hidden">
                             <option value="">Choose</option>
-                            <option value="watching">Watching</option>
-                            <option value="planning">Planning</option>
-                            <option value="completed">Completed</option>
-                            <option value="paused">Paused</option>
-                            <option value="dropped">Dropped</option>
+                            <option value="TBA">TBA</option>
+                            <option value="ANNOUNCED">Announced</option>
+                            <option value="ONGOING">Ongoing</option>
+                            <option value="RELEASED">Released</option>
                         </select>
                     </div>
 
@@ -169,7 +167,7 @@
                             </svg>
                         </div>
                         <label class="hidden" for="hs-genres-input">Genres label</label>
-                        <select multiple="" data-hs-select='{
+                        <select name="genres" multiple="" data-hs-select='{
                               "placeholder": "Select genres...",
                               "dropdownClasses": "mt-2 z-50 w-full max-h-72 p-1 space-y-0.5 bg-white border border-gray-200 rounded-lg overflow-hidden overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-thumb]:bg-gray-300",
                               "optionClasses": "py-1 px-2 w-full text-sm font-medium text-white cursor-pointer hover:bg-gray-100 rounded-lg focus:outline-none focus:bg-gray-100 hs-select-disabled:pointer-events-none hs-select-disabled:opacity-50",
@@ -181,29 +179,29 @@
                               "optionTemplate": "<div class=\"flex items-center\"><div class=\"size-8 me-2\" data-icon></div><div class=\"rounded-full px-2 py-1 border border-gray-200\"><div class=\"text-sm font-medium\" data-title></div><div class=\"text-xs text-neutral-600 \" data-description></div></div><div class=\"ms-auto\"><span class=\"hidden hs-selected:block\"><svg class=\"shrink-0 size-4 text-blue-600\" xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" fill=\"currentColor\" viewBox=\"0 0 16 16\"><path d=\"M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z\"/></svg></span></div></div>",
                               "extraMarkup": "<div class=\"absolute top-1/2 end-3 -translate-y-1/2\"><svg class=\"shrink-0 size-3.5 text-neutral-600 \" xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m7 15 5 5 5-5\"/><path d=\"m7 9 5-5 5 5\"/></svg></div>"
                             }' class="hidden">
-                            <option value="action">Action</option>
-                            <option value="adult">Adult</option>
-                            <option value="adventure">Adventure</option>
-                            <option value="animation">Animation</option>
-                            <option value="biography">Biography</option>
-                            <option value="comedy">Comedy</option>
-                            <option value="crime">Crime</option>
-                            <option value="documentary">Documentary</option>
-                            <option value="drama">Drama</option>
-                            <option value="family">Family</option>
-                            <option value="fantasy">Fantasy</option>
-                            <option value="noir">Noir</option>
-                            <option value="history">History</option>
-                            <option value="horror">Horror</option>
-                            <option value="musical">Musical</option>
-                            <option value="mystery">Mystery</option>
-                            <option value="reality">Reality</option>
-                            <option value="romance">Romance</option>
-                            <option value="sci-fi">Sci-fi</option>
-                            <option value="sport">Sport</option>
-                            <option value="thriller">Thriller</option>
-                            <option value="war">War</option>
-                            <option value="western">Western</option>
+                            <option value="ACTION">Action</option>
+                            <option value="ADULT">Adult</option>
+                            <option value="ADVENTURE">Adventure</option>
+                            <option value="ANIMATION">Animation</option>
+                            <option value="BIOGRAPHY">Biography</option>
+                            <option value="COMEDY">Comedy</option>
+                            <option value="CRIME">Crime</option>
+                            <option value="DOCUMENTARY">Documentary</option>
+                            <option value="DRAMA">Drama</option>
+                            <option value="FAMILY">Family</option>
+                            <option value="FANTASY">Fantasy</option>
+                            <option value="NOIR">Noir</option>
+                            <option value="HISTORY">History</option>
+                            <option value="HORROR">Horror</option>
+                            <option value="MUSICAL">Musical</option>
+                            <option value="MYSTERY">Mystery</option>
+                            <option value="REALITY">Reality</option>
+                            <option value="ROMANCE">Romance</option>
+                            <option value="SCIFI">Sci-fi</option>
+                            <option value="SPORT">Sport</option>
+                            <option value="THRILLER">Thriller</option>
+                            <option value="WAR">War</option>
+                            <option value="WESTERN">Western</option>
                         </select>
                     </div>
                 </div>
@@ -221,14 +219,14 @@
 
                         <div class="flex justify-between py-3 px-4 w-full align-middle h-11 border border-gray-400 bg-white rounded-lg disabled:opacity-50 disabled:pointer-events-none">
                             <div class="flex">
-                                <input type="radio" name="hs-movie" class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 cursor-pointer focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-movie" checked="">
+                                <input type="radio" name="type" value="MOVIE" class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 cursor-pointer focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-movie" checked="" onchange="toggleFields()">
                                 <label for="hs-movie" class="text-[15px] text-black mx-2">Movie</label>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.375 19.5h17.25m-17.25 0a1.125 1.125 0 0 1-1.125-1.125M3.375 19.5h1.5C5.496 19.5 6 18.996 6 18.375m-3.75 0V5.625m0 12.75v-1.5c0-.621.504-1.125 1.125-1.125m18.375 2.625V5.625m0 12.75c0 .621-.504 1.125-1.125 1.125m1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125m0 3.75h-1.5A1.125 1.125 0 0 1 18 18.375M20.625 4.5H3.375m17.25 0c.621 0 1.125.504 1.125 1.125M20.625 4.5h-1.5C18.504 4.5 18 5.004 18 5.625m3.75 0v1.5c0 .621-.504 1.125-1.125 1.125M3.375 4.5c-.621 0-1.125.504-1.125 1.125M3.375 4.5h1.5C5.496 4.5 6 5.004 6 5.625m-3.75 0v1.5c0 .621.504 1.125 1.125 1.125m0 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125m1.5-3.75C5.496 8.25 6 7.746 6 7.125v-1.5M4.875 8.25C5.496 8.25 6 8.754 6 9.375v1.5m0-5.25v5.25m0-5.25C6 5.004 6.504 4.5 7.125 4.5h9.75c.621 0 1.125.504 1.125 1.125m1.125 2.625h1.5m-1.5 0A1.125 1.125 0 0 1 18 7.125v-1.5m1.125 2.625c-.621 0-1.125.504-1.125 1.125v1.5m2.625-2.625c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125M18 5.625v5.25M7.125 12h9.75m-9.75 0A1.125 1.125 0 0 1 6 10.875M7.125 12C6.504 12 6 12.504 6 13.125m0-2.25C6 11.496 5.496 12 4.875 12M18 10.875c0 .621-.504 1.125-1.125 1.125M18 10.875c0 .621.504 1.125 1.125 1.125m-2.25 0c.621 0 1.125.504 1.125 1.125m-12 5.25v-5.25m0 5.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125m-12 0v-1.5c0-.621-.504-1.125-1.125-1.125M18 18.375v-5.25m0 5.25v-1.5c0-.621.504-1.125 1.125-1.125M18 13.125v1.5c0 .621.504 1.125 1.125 1.125M18 13.125c0-.621.504-1.125 1.125-1.125M6 13.125v1.5c0 .621-.504 1.125-1.125 1.125M6 13.125C6 12.504 5.496 12 4.875 12m-1.5 0h1.5m-1.5 0c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125M19.125 12h1.5m0 0c.621 0 1.125.504 1.125 1.125v1.5c0 .621-.504 1.125-1.125 1.125m-17.25 0h1.5m14.25 0h1.5" />
                                 </svg>
                             </div>
                             <div class="flex">
-                                <input type="radio" name="hs-tv" class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 cursor-pointer focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-rtv">
+                                <input type="radio" name="type" value="TV" class="shrink-0 mt-0.5 border-gray-400 rounded-full text-blue-600 cursor-pointer focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" id="hs-rtv" onchange="toggleFields()">
                                 <label for="hs-tv" class="text-[15px] text-black mx-2">TV</label>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125Z" />
@@ -248,7 +246,7 @@
                         <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                             <div class="w-full flex justify-between items-center gap-x-5">
                                 <div class="grow">
-                                    <input class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
+                                    <input name="year" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="0" data-hs-input-number-input="">
                                 </div>
                                 <div class="flex justify-end items-center gap-x-1.5">
                                     <button type="button" class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-400 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" tabindex="-1" aria-label="Decrease" data-hs-input-number-decrement="">
@@ -279,7 +277,7 @@
                         <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                             <div class="w-full flex justify-between items-center gap-x-5">
                                 <div class="grow">
-                                    <input class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
+                                    <input name="duration" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="0" data-hs-input-number-input="">
                                 </div>
 
                                 <div class="flex justify-end items-center gap-x-1.5">
@@ -298,7 +296,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <div id="tv-fields" style="display:none;">
                     <div class="mb-6">
                         <div class="flex justify-between items-center mb-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#525252" class="size-6">
@@ -311,7 +309,7 @@
                         <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                             <div class="w-full flex justify-between items-center gap-x-5">
                                 <div class="grow">
-                                    <input class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
+                                    <input name="seasonsNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
                                 </div>
                                 <div class="flex justify-end items-center gap-x-1.5">
                                     <button type="button" class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-400 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" tabindex="-1" aria-label="Decrease" data-hs-input-number-decrement="">
@@ -342,7 +340,7 @@
                         <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                             <div class="w-full flex justify-between items-center gap-x-5">
                                 <div class="grow">
-                                    <input class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
+                                    <input name="episodesNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
                                 </div>
 
                                 <div class="flex justify-end items-center gap-x-1.5">
@@ -373,7 +371,7 @@
                         <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                             <div class="w-full flex justify-between items-center gap-x-5">
                                 <div class="grow">
-                                    <input class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
+                                    <input name="totalEpisodesNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="1" data-hs-input-number-input="">
                                 </div>
 
                                 <div class="flex justify-end items-center gap-x-1.5 ">
@@ -392,8 +390,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <button type="button" class="inline-flex justify-center py-3 px-4 w-32 mt-9 ml-auto items-center gap-x-2 text-[15px] font-bold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-800 focus:outline-none focus:bg-primary-800 disabled:opacity-50 disabled:pointer-events-none">
+                </div>
+                    <button type="submit" class="inline-flex justify-center py-3 px-4 w-32 mt-9 ml-auto items-center gap-x-2 text-[15px] font-bold rounded-lg border border-transparent bg-primary-600 text-white hover:bg-primary-800 focus:outline-none focus:bg-primary-800 disabled:opacity-50 disabled:pointer-events-none">
                         <span>Publish</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -402,6 +400,7 @@
                 </div>
             </div>
         </div>
+        </form>
         <script src="/generated/js/preline.js"></script>
         <script src="/js/addcontent.js"></script>
     </body>
