@@ -42,3 +42,19 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }, 100);
 });
+
+function toggleFields() {
+  // Ottieni i valori dei radio button
+  const typeMovie = document.getElementById("hs-movie");
+  const typeTv = document.getElementById("hs-rtv");
+
+  // Ottieni il div che contiene i campi specifici per la TV
+  const tvFields = document.getElementById("tv-fields");
+
+  // Se "TV" è selezionato, mostra i campi TV, altrimenti nascondili
+  if (typeTv.checked) {
+    tvFields.style.display = "block";
+  } else {
+    tvFields.style.display = "none";
+  }
+}
