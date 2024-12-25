@@ -1,3 +1,4 @@
+@param String errorMessage
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -401,6 +402,11 @@
             </div>
         </div>
         </form>
+        @if(errorMessage != null)
+            <div class="alert alert-danger">
+                ${errorMessage}
+            </div>
+        @endif
         <script src="/generated/js/preline.js"></script>
         <script src="/js/addcontent.js"></script>
     </body>
