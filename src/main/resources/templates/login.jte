@@ -16,14 +16,17 @@
                     <div class="p-4 md:p-5 mt-3">
                         <h3 class="text-2xl font-bold text-gray-800 text-left mb-8">Log-in</h3>
 
-                        <form class="max-w-lg mx-auto space-y-6 flex flex-col items-center">
+                        <form action="/login" method="POST" class="max-w-lg mx-auto space-y-6 flex flex-col items-center">
                             <div class="mx-auto space-y-3 w-full">
                                 <label for="input-label" class="block text-sm font-medium mb-2">Email</label>
                                 <div class="relative">
-                                    <input type="email"
+                                    <input type="text"
                                            id="input-label"
+                                           name="username"
                                            class="peer py-4 px-4 ps-11 block w-full bg-gray-100 border-gray-600 rounded-lg text-sm focus:border-primary-600 focus:ring-primary-600 disabled:opacity-50 disabled:pointer-events-none required"
-                                           placeholder="your@mail"
+                                           placeholder="yourUsername"
+                                           minlength="3"
+                                           maxlength="25"
                                            required>
 
                                     <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -35,11 +38,13 @@
 
                                 <label for="password" class="block text-sm font-medium mb-2">Password</label>
                                 <div class="relative">
-                                    <input type="password" id="password"
+                                    <input type="password"
+                                           id="password"
+                                           name="password"
                                            class="peer py-4 px-4 pr-10 ps-11 block w-full bg-gray-100 border-gray-600 rounded-lg text-sm focus:border-primary-600 focus:ring-primary-600 disabled:opacity-50 disabled:pointer-events-none overflow-hidden text-ellipsis"
                                            placeholder="password1234"
-                                           minlength="4"
-                                           maxlength="64"
+                                           minlength="8"
+                                           maxlength="255"
                                            required>
 
                                     <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4">
@@ -69,6 +74,8 @@
                 </div>
             </div>
         </div>
+
+
 
         @template.components.footer()
 
