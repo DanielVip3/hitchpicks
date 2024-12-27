@@ -1,7 +1,6 @@
 package it.unisa.hitchpicks.logic;
 
 import it.unisa.hitchpicks.storage.*;
-
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

@@ -23,8 +23,7 @@ public class Content {
 
   @NotNull(message = "Image URL must not be empty.")
   @NotEmpty(message = "Image URL must not be empty.")
-  @Pattern(regexp = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)",
-    message = "Image URL must have a valid format.")
+  @Pattern(regexp = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)", message = "Image URL must have a valid format.")
   @Length(max = 2000, message = "Image URL must be at most 2000 characters.")
   @Column(length = 2000)
   @Setter private String image;
