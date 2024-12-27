@@ -3,9 +3,7 @@ package it.unisa.hitchpicks.storage;
 import io.hypersistence.utils.hibernate.type.array.EnumArrayType;
 import io.hypersistence.utils.hibernate.type.array.internal.AbstractArrayType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnTransformer;
@@ -24,11 +22,14 @@ public class Content {
   private Integer id;
 
   @NotNull
+  @NotEmpty
+  @Pattern(regexp = "((([A-Za-z]{3,9}:(?:\\/\\/)?)(?:[-;:&=\\+\\$,\\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\\+\\$,\\w]+@)[A-Za-z0-9.-]+)((?:\\/[\\+~%\\/.\\w-_]*)?\\??(?:[-\\+=&;%@.\\w_]*)#?(?:[\\w]*))?)")
   @Length(max = 2000)
   @Column(length = 2000)
   @Setter private String image;
 
   @NotNull
+  @NotEmpty
   @Length(max = 100)
   @Column(length = 100)
   @Setter private String title;
@@ -60,6 +61,7 @@ public class Content {
   @Min(1900)
   @Setter private Integer year;
 
+  @Pattern(regexp = "^$|^[A-Za-z]{2}\\d{7}$")
   @Setter private String idIMDB;
 
   @Min(1)
