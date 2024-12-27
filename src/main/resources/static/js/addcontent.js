@@ -41,6 +41,21 @@ document.addEventListener("DOMContentLoaded", function() {
       option.parentElement.style.backgroundColor = genreColors[option.innerText.trim()];
     }
   }, 100);
+
+  const numberInputs = [
+    document.getElementById("year-input"),
+    document.getElementById("duration-input"),
+    document.getElementById("episodes-number-input"),
+    document.getElementById("total-episodes-number-input"),
+    document.getElementById("seasons-input")
+  ];
+  setInterval(function() {
+    for (const input of numberInputs) {
+      if (input.value === '0') {
+        input.value = '';
+      }
+    }
+  }, 10);
 });
 
 function toggleFields() {
