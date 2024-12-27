@@ -69,7 +69,7 @@
                                     <span class="px-4 inline-flex items-center min-w-fit rounded-s-md border border-e-0 border-gray-400 bg-gray-200 text-[15px]">
                                         <span class="text-[15px] text-black">https://</span>
                                     </span>
-                                    <input type="text" required name="image"
+                                    <input type="text" required name="image" id="image-input"
                                            class="py-3 px-4 block w-full h-11 border-gray-400 shadow-sm rounded-r-lg text-[15px]  font-medium placeholder:font-light focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                                            placeholder="Insert URL...">
                                 </div>
@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="mt-9">
-                            <img src="https://i.imgur.com/wvf8mlc.png" alt="Breaking Bread" class="w-[200px] h-[313px] rounded-lg shadow-lg">
+                            <img id="image-preview" src="/assets/image-not-found.png" alt="Preview of image" class="w-[200px] h-[313px] rounded-lg shadow-lg" onerror="this.src='/assets/image-not-found.png'">
                         </div>
                     </div>
 
@@ -253,7 +253,7 @@
                             <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                                 <div class="w-full flex justify-between items-center gap-x-5">
                                     <div class="grow">
-                                        <input name="year" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="year-input">
+                                        <input name="year" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none placeholder:font-light text-[15px]" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="year-input" placeholder="Insert year...">
                                     </div>
                                     <div class="flex justify-end items-center gap-x-1.5">
                                         <button type="button" class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-400 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" tabindex="-1" aria-label="Decrease" data-hs-input-number-decrement="">
@@ -278,13 +278,13 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                                 </svg>
 
-                                <span class="text-neutral-600 text-[15px] font-medium">Duration(minutes)</span>
+                                <span class="text-neutral-600 text-[15px] font-medium">Duration (minutes)</span>
                             </div>
 
                             <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                                 <div class="w-full flex justify-between items-center gap-x-5">
                                     <div class="grow">
-                                        <input name="duration" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="duration-input">
+                                        <input name="duration" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none placeholder:font-light text-[15px]" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="duration-input" placeholder="Insert duration...">
                                     </div>
 
                                     <div class="flex justify-end items-center gap-x-1.5">
@@ -316,7 +316,7 @@
                             <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                                 <div class="w-full flex justify-between items-center gap-x-5">
                                     <div class="grow">
-                                        <input name="seasonsNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="seasons-input">
+                                        <input name="seasonsNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none placeholder:font-light text-[15px]" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="seasons-input" placeholder="Insert seasons...">
                                     </div>
                                     <div class="flex justify-end items-center gap-x-1.5">
                                         <button type="button" class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-400 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" tabindex="-1" aria-label="Decrease" data-hs-input-number-decrement="">
@@ -347,7 +347,7 @@
                             <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                                 <div class="w-full flex justify-between items-center gap-x-5">
                                     <div class="grow">
-                                        <input name="episodesNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="episodes-number-input">
+                                        <input name="episodesNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none placeholder:font-light text-[15px]" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="episodes-number-input" placeholder="Insert current episodes...">
                                     </div>
 
                                     <div class="flex justify-end items-center gap-x-1.5">
@@ -378,7 +378,7 @@
                             <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                                 <div class="w-full flex justify-between items-center gap-x-5">
                                     <div class="grow">
-                                        <input name="totalEpisodesNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="total-episodes-number-input">
+                                        <input name="totalEpisodesNumber" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none placeholder:font-light text-[15px]" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="" id="total-episodes-number-input" placeholder="Insert total episodes...">
                                     </div>
 
                                     <div class="flex justify-end items-center gap-x-1.5 ">
