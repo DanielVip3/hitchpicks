@@ -51,6 +51,8 @@ public class AddContentController {
 
       contentService.create(content);
 
+      redirectAttributes.addFlashAttribute("successMessage", "Content inserted successfully.");
+
       return "redirect:/admin/addcontent";
     } catch (IllegalArgumentException ex) {
       redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());

@@ -1,4 +1,6 @@
 @param String errorMessage
+@param String successMessage
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -403,9 +405,27 @@
                             </svg>
                         </button>
 
-                        @if(errorMessage != null)
-                            <div class="mt-2 ml-auto bg-red-100 border border-red-200 text-sm text-red-800 rounded-lg p-4" role="alert" tabindex="-1">
-                                <span class="font-bold">Error!</span><br/>${errorMessage}
+                        @if (errorMessage != null)
+                            <div class="mt-2 ml-auto bg-red-100 border-t-4 border-red-200 text-sm text-red-800 rounded-lg p-4" role="alert" tabindex="-1">
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+                                    </svg>
+                                    <span class="font-bold">Error!</span>
+                                </div>
+                                ${errorMessage}
+                            </div>
+                        @endif
+
+                        @if (successMessage != null)
+                            <div class="mt-2 bg-teal-100 border-t-4 border-teal-200 text-sm text-teal-800 rounded-lg p-4" role="alert" tabindex="-1">
+                                <div class="flex items-center gap-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                                    </svg>
+                                    <span class="font-bold">Success!</span>
+                                </div>
+                                ${successMessage}
                             </div>
                         @endif
                     </div>
