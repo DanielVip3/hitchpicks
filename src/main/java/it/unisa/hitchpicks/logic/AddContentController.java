@@ -31,21 +31,21 @@ public class AddContentController {
   ) {
     try {
       if (bindingResult.hasErrors()) {
-        throw new IllegalArgumentException(bindingResult.getAllErrors().getFirst().toString());
+        throw new IllegalArgumentException(bindingResult.getAllErrors().getFirst().getDefaultMessage());
       }
 
       int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
       if (content.getYear() != null && content.getYear() > currentYear + 10) {
-        throw new IllegalArgumentException("Invalid 'year' field");
+        throw new IllegalArgumentException("Year must be " + (currentYear + 10) + " or previous.");
       }
 
       if (content.getType() == ContentType.TV) {
         if (content.getEpisodesNumber() == null) {
-          throw new IllegalArgumentException("Invalid 'episodesNumber' field");
+          throw new IllegalArgumentException("Current episodes must not be empty.");
         } else if (content.getTotalEpisodesNumber() == null) {
-          throw new IllegalArgumentException("Invalid 'totalEpisodesNumber' field");
+          throw new IllegalArgumentException("Total episodes must not be empty.");
         } else if (content.getEpisodesNumber() > content.getTotalEpisodesNumber()) {
-          throw new IllegalArgumentException("Invalid 'episodesNumber' field");
+          throw new IllegalArgumentException("Current episodes must be less or equal to total episodes.");
         }
       }
 
