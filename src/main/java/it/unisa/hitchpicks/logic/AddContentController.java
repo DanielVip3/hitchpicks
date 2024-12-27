@@ -53,8 +53,6 @@ public class AddContentController {
 
       return "redirect:/admin/addcontent";
     } catch (IllegalArgumentException ex) {
-      System.out.println(bindingResult.getAllErrors());
-
       redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
 
       return "redirect:/admin/addcontent";
