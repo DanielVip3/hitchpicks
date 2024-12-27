@@ -1,3 +1,4 @@
+@param String error
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -69,13 +70,14 @@
                                 </svg>
                             </button>
                         </form>
+                        @if (error != null)
+                            <div>${error}</div>
+                        @endif
                         <p class="mt-8 text-slate-800 text-xs opacity-70">Not registered? <a class="text-blue-600 hover:text-blue-500 decoration-2 hover:underline focus:outline-none focus:underline 0 text-xs text-centered opacity-90" href="#">Create an account</a></p>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         @template.components.footer()
 

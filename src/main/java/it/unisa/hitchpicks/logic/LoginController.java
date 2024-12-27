@@ -1,17 +1,17 @@
 package it.unisa.hitchpicks.logic;
 
-import org.springframework.ui.Model;
 import it.unisa.hitchpicks.storage.User;
 import it.unisa.hitchpicks.storage.UserService;
 import jakarta.servlet.http.HttpSession;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.NoSuchElementException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class LoginController {
@@ -31,23 +31,15 @@ public class LoginController {
   public String handleLogin(
           @RequestParam String username,
           @RequestParam String password,
-          Model model,
+          RedirectAttributes redirectAttributes,
           HttpSession session
   ) {
 
-    if (username.length() < 3 || username.length() > 25) {
-      model.addAttribute("error", "Username must be between 3 and 25 characters.");
-      return "login";
-    }
+    if (!isValidUsername(username) || !isValidPassword(password)) {
 
-    if (password.length() < 8 || password.length() > 255) {
-      model.addAttribute("error", "Password must be between 8 and 255 characters.");
-      return "login";
-    }
+      redirectAttributes.addFlashAttribute("error", "Invalid username or password");
+      return "redirect:/login";
 
-    if (!password.matches("[A-Za-z0-9]+")) {
-      model.addAttribute("error", "Password must be alphanumeric.");
-      return "login";
     }
 
     try {
@@ -59,12 +51,25 @@ public class LoginController {
 
       return "redirect:/home";
 
-    } catch (Exception e) {
-      /*
-      model.addAttribute("error", "Incorrect username or password");
-      */
-      return "login";
+    } catch (NoSuchElementException e) {
+
+      redirectAttributes.addFlashAttribute("error", "User not found");
+      return "redirect:/login";
+
+    }  catch (IllegalArgumentException e) {
+
+      redirectAttributes.addFlashAttribute("error", "Incorrect username or password");
+      return "redirect:/login";
+
     }
+  }
+
+  private boolean isValidUsername(String username) {
+    return username.length() >= 3 && username.length() <= 25;
+  }
+
+  private boolean isValidPassword(String password) {
+    return password.length() >= 8 && password.length() <= 255 && password.matches("[A-Za-z0-9]+");
   }
 
   public static String hashPassword(String password) {
