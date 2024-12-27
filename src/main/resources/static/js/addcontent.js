@@ -41,4 +41,36 @@ document.addEventListener("DOMContentLoaded", function() {
       option.parentElement.style.backgroundColor = genreColors[option.innerText.trim()];
     }
   }, 100);
+
+  const numberInputs = [
+    document.getElementById("year-input"),
+    document.getElementById("duration-input"),
+    document.getElementById("episodes-number-input"),
+    document.getElementById("total-episodes-number-input"),
+    document.getElementById("seasons-input")
+  ];
+  setInterval(function() {
+    for (const input of numberInputs) {
+      if (input.value === '0') {
+        input.value = '';
+      }
+    }
+  }, 10);
+
+  document.getElementById("image-input").addEventListener("change", function (event) {
+    document.getElementById("image-preview").src = "https://" + event.target.value;
+  });
 });
+
+function toggleFields() {
+  const typeMovie = document.getElementById("hs-movie");
+  const typeTv = document.getElementById("hs-rtv");
+
+  const tvFields = document.getElementById("tv-fields");
+
+  if (typeTv.checked) {
+    tvFields.style.display = "block";
+  } else {
+    tvFields.style.display = "none";
+  }
+}

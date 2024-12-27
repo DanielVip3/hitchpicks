@@ -3,9 +3,7 @@ package it.unisa.hitchpicks.storage;
 import io.hypersistence.utils.hibernate.type.array.EnumArrayType;
 import io.hypersistence.utils.hibernate.type.array.internal.AbstractArrayType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnTransformer;
@@ -23,55 +21,59 @@ public class Content {
   @GeneratedValue
   private Integer id;
 
-  @NotNull
-  @Length(max = 2000)
+  @NotNull(message = "Image URL must not be empty.")
+  @NotEmpty(message = "Image URL must not be empty.")
+  @Pattern(regexp = "[(http(s)?):\\/\\/(www\\.)?a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)", message = "Image URL must have a valid format.")
+  @Length(max = 2000, message = "Image URL must be at most 2000 characters.")
   @Column(length = 2000)
   @Setter private String image;
 
-  @NotNull
-  @Length(max = 100)
+  @NotNull(message = "Title must not be empty.")
+  @NotEmpty(message = "Title must not be empty.")
+  @Length(max = 100, message = "Title must be at most 100 characters.")
   @Column(length = 100)
   @Setter private String title;
 
-  @NotNull
+  @NotNull(message = "Content type must not be empty.")
   @Enumerated(EnumType.STRING)
   @Column(columnDefinition = "content_type")
   @ColumnTransformer(write = "?::content_type")
   @Setter private ContentType type;
 
-  @NotNull
+  @NotNull(message = "Status must not be empty.")
   @Enumerated(EnumType.STRING)
   @Column(columnDefinition = "content_state")
   @ColumnTransformer(write = "?::content_state")
   @Setter private ContentState state;
 
-  @Length(max = 1000)
+  @Length(max = 1000, message = "Synopsis must be at most 1000 characters.")
   @Column(length = 1000)
   @Setter private String synopsis;
 
-  @Length(max = 100)
+  @Length(max = 100, message = "Director must be at most 100 characters.")
   @Column(length = 100)
   @Setter private String director;
 
-  @Min(1)
-  @Max(1000000)
+  @Min(value = 1, message = "Duration must be at least 1 minute.")
+  @Max(value = 1000000, message = "Duration must be at most 1000000 minutes.")
   @Setter private Integer duration;
 
-  @Min(1900)
+  @Min(value = 1900, message = "Year must be 1900 or following.")
   @Setter private Integer year;
 
+  @Pattern(regexp = "^$|^[A-Za-z]{2}\\d{7}$", message = "IMDB ID must have a valid format.")
   @Setter private String idIMDB;
 
-  @Min(1)
-  @Max(1000)
+  @Min(value = 1, message = "Seasons must be at least 1.")
+  @Max(value = 1000, message = "Seasons must be at most 1000.")
   @Setter private Integer seasonsNumber;
 
-  @Min(1)
-  @Max(100000)
+  @Min(value = 1, message = "Current episodes must be at least 1.")
+  @Max(value = 100000, message = "Current episodes must be at most 100000.")
   @Setter private Integer episodesNumber;
 
-  @Min(1)
-  @Max(100000)
+  @Min(value = 1, message = "Total episodes must be at least 1.")
+  @Max(value = 100000, message = "Total episodes must be at most 100000.")
   @Setter private Integer totalEpisodesNumber;
 
   @Type(
