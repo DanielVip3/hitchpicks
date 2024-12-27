@@ -41,23 +41,21 @@ public class AddContentController {
             RedirectAttributes redirectAttributes
     ) {
         try {
-            //Aggiungere matches su url
-            if (image == null || image.isEmpty() || image.length() > 2000) {
-                throw new IllegalArgumentException("Campo 'image' non valido");
+            // Add matches on url
+            if (image == null || image.isEmpty() || image.length() > 2000 || !image.matches("((([A-Za-z]{3,9}:(?:\\/\\/)?)(?:[-;:&=\\+\\$,\\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\\+\\$,\\w]+@)[A-Za-z0-9.-]+)((?:\\/[\\+~%\\/.\\w-_]*)?\\??(?:[-\\+=&;%@.\\w_]*)#?(?:[\\w]*))?)")) {
+                throw new IllegalArgumentException("Invalid 'image' field");
             }
 
             if (title == null || title.isEmpty() || title.length() > 100) {
-                throw new IllegalArgumentException("Campo 'title' non valido");
+                throw new IllegalArgumentException("Invalid 'title' field");
             }
 
             if (synopsis == null || synopsis.isEmpty() || synopsis.length() > 1000) {
-                throw new IllegalArgumentException("Campo 'synopsis' non valido");
+                throw new IllegalArgumentException("Invalid 'synopsis' field");
             }
-
 
             ContentType contentType = ContentType.valueOf(type.toUpperCase());
             ContentState contentState = ContentState.valueOf(state.toUpperCase());
-
 
             Content content = new Content();
             content.setImage(image);
@@ -66,44 +64,43 @@ public class AddContentController {
             content.setState(contentState);
             content.setSynopsis(synopsis);
 
-
             if (director != null && director.length() <= 100) {
                 content.setDirector(director);
             }
 
-            if (duration != null) {
+            if (duration != null && !duration.equals("0")) {
                 int durationValue = Integer.parseInt(duration);
                 if (durationValue > 0 && durationValue <= 1000000) {
                     content.setDuration(durationValue);
                 } else {
-                    throw new IllegalArgumentException("Campo 'duration' non valido");
+                    throw new IllegalArgumentException("Invalid 'duration' field");
                 }
             }
 
-            if (year != null) {
+            if (year != null && !year.equals("0")) {
                 int yearValue = Integer.parseInt(year);
                 int currentYear = java.util.Calendar.getInstance().get(java.util.Calendar.YEAR);
                 if (yearValue >= 1900 && yearValue <= currentYear + 10) {
                     content.setYear(yearValue);
                 } else {
-                    throw new IllegalArgumentException("Campo 'year' non valido");
+                    throw new IllegalArgumentException("Invalid 'year' field");
                 }
             }
 
-           /* if (idIMDB != null) {
-                if (idIMDB.matches("^tt\\d{7,8}$")) {
+            if (idIMDB != null) {
+                if (idIMDB.matches("^[A-Za-z]{2}\\d{7}$")) {
                     content.setIdIMDB(idIMDB);
                 } else {
-                    throw new IllegalArgumentException("Campo 'idIMDB' non valido");
+                    throw new IllegalArgumentException("Invalid 'idIMDB' field: it must start with two letters followed by 7 digits");
                 }
-            }*/
+            }
 
             if (seasonsNumber != null) {
                 int seasonsValue = Integer.parseInt(seasonsNumber);
                 if (seasonsValue > 0 && seasonsValue <= 1000) {
                     content.setSeasonsNumber(seasonsValue);
                 } else {
-                    throw new IllegalArgumentException("Campo 'seasonsNumber' non valido");
+                    throw new IllegalArgumentException("Invalid 'seasonsNumber' field");
                 }
             }
 
@@ -113,7 +110,7 @@ public class AddContentController {
                 if (episodesValue > 0 && episodesValue <= 100000 && episodesValue <= totalEpisodesValue) {
                     content.setEpisodesNumber(episodesValue);
                 } else {
-                    throw new IllegalArgumentException("Campo 'episodesNumber' non valido");
+                    throw new IllegalArgumentException("Invalid 'episodesNumber' field");
                 }
             }
 
@@ -122,11 +119,11 @@ public class AddContentController {
                 if (totalEpisodesValue > 0 && totalEpisodesValue <= 100000) {
                     content.setTotalEpisodesNumber(totalEpisodesValue);
                 } else {
-                    throw new IllegalArgumentException("Campo 'totalEpisodesNumber' non valido");
+                    throw new IllegalArgumentException("Invalid 'totalEpisodesNumber' field");
                 }
             }
 
-            // Gestione dei generi
+            // Manage genres
             if (genres != null) {
                 try {
                     content.setGenres(Arrays.stream(genres.split(","))
@@ -134,12 +131,10 @@ public class AddContentController {
                             .map(ContentGenres::valueOf)
                             .toArray(ContentGenres[]::new));
                 } catch (IllegalArgumentException e) {
-                    // Errore di parsing dei generi
-                    System.out.println("Errore: uno dei valori di genere non è valido.");
+                    throw new IllegalArgumentException("Invalid 'genres' field");
                 }
             }
 
-            // Gestione delle piattaforme di streaming
             if (streamingPlatforms != null) {
                 try {
                     content.setStreamingPlatforms(Arrays.stream(streamingPlatforms.split(","))
@@ -147,12 +142,10 @@ public class AddContentController {
                             .map(ContentStreamingPlatforms::valueOf)
                             .toArray(ContentStreamingPlatforms[]::new));
                 } catch (IllegalArgumentException e) {
-                    // Errore di parsing delle piattaforme di streaming
-                    System.out.println("Errore: uno dei valori di piattaforma di streaming non è valido.");
+                    throw new IllegalArgumentException("Invalid 'streamingPlatforms' field");
                 }
             }
 
-            // Creazione del contenuto
             contentService.create(content);
 
             return "redirect:/admin/addcontent";

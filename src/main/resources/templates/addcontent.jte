@@ -247,7 +247,7 @@
                         <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                             <div class="w-full flex justify-between items-center gap-x-5">
                                 <div class="grow">
-                                    <input name="year" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="0" data-hs-input-number-input="">
+                                    <input name="year" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="">
                                 </div>
                                 <div class="flex justify-end items-center gap-x-1.5">
                                     <button type="button" class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-400 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none" tabindex="-1" aria-label="Decrease" data-hs-input-number-decrement="">
@@ -278,7 +278,7 @@
                         <div class="py-2 px-3 bg-white border border-gray-400 rounded-lg" data-hs-input-number="">
                             <div class="w-full flex justify-between items-center gap-x-5">
                                 <div class="grow">
-                                    <input name="duration" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" value="0" data-hs-input-number-input="">
+                                    <input name="duration" class="w-full p-0 bg-transparent border-0 text-black font-medium focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" style="-moz-appearance: textfield;" type="number" aria-roledescription="Number field" data-hs-input-number-input="">
                                 </div>
 
                                 <div class="flex justify-end items-center gap-x-1.5">
