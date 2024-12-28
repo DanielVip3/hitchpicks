@@ -22,9 +22,9 @@ public class AddContentController {
    *
    * @return the name of the view template for the add content page
    */
-  @GetMapping("/admin/addcontent")
+  @GetMapping("/admin/add-content")
   public String addContent() {
-    return "addcontent";
+    return "add-content";
   }
 
   /**
@@ -36,7 +36,7 @@ public class AddContentController {
    * @param redirectAttributes used to pass flash attributes, such as error messages
    * @return a redirect URL to the same page on success, or with error messages on failure
    */
-  @PostMapping("/admin/addcontent")
+  @PostMapping("/admin/add-content")
   public String handleAddContent(
       @Valid @ModelAttribute Content content,
       BindingResult bindingResult,
@@ -66,11 +66,11 @@ public class AddContentController {
 
       redirectAttributes.addFlashAttribute("successMessage", "Content inserted successfully.");
 
-      return "redirect:/admin/addcontent";
+      return "redirect:/admin/add-content";
     } catch (IllegalArgumentException ex) {
       redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
 
-      return "redirect:/admin/addcontent";
+      return "redirect:/admin/add-content";
     }
   }
 }

@@ -61,7 +61,7 @@ public class LoginController {
 
       session.setAttribute("user", user);
 
-      return "redirect:/admin/addcontent";
+      return "redirect:/admin/add-content";
     } catch (NoSuchElementException e) {
       redirectAttributes.addFlashAttribute("error", "User not found");
 

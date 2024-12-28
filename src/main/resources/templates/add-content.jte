@@ -13,7 +13,7 @@
 
         @template.components.sidebar-admin()
 
-        <form method="POST" action="/admin/addcontent">
+        <form method="POST" action="/admin/add-content">
             <div class="w-[1400px] p-4 ml-auto mr-32 mb-4 bg-white border border-zinc-300 border-t-4 border-t-primary-600 rounded-lg shadow-lg justify-center items-center flex flex-col">
                 <div class="my-4 px-12 w-full">
                     <span class="text-[32px] font-medium">Add content</span>
@@ -434,6 +434,6 @@
         </form>
 
         <script src="/generated/js/preline.js"></script>
-        <script src="/js/addcontent.js"></script>
+        <script src="/js/add-content.js"></script>
     </body>
 </html>
