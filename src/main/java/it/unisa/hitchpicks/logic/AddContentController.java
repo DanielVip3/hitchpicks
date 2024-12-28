@@ -17,12 +17,26 @@ public class AddContentController {
     this.contentService = contentService;
   }
 
-  @GetMapping("/admin/addcontent")
+  /**
+   * Displays the "Add content" page for admins.
+   *
+   * @return the name of the view template for the add content page
+   */
+  @GetMapping("/admin/add-content")
   public String addContent() {
-    return "addcontent";
+    return "add-content";
   }
 
-  @PostMapping("/admin/addcontent")
+  /**
+   * Adds new content by validating the provided {@link Content} object and saving it.
+   * It's called by a form in the "Add content" page, by admins.
+   *
+   * @param content            the content object to be added, populated from the form submission
+   * @param bindingResult      contains validation results for the {@code content} object
+   * @param redirectAttributes used to pass flash attributes, such as error messages
+   * @return a redirect URL to the same page on success, or with error messages on failure
+   */
+  @PostMapping("/admin/add-content")
   public String handleAddContent(
       @Valid @ModelAttribute Content content,
       BindingResult bindingResult,
@@ -52,11 +66,11 @@ public class AddContentController {
 
       redirectAttributes.addFlashAttribute("successMessage", "Content inserted successfully.");
 
-      return "redirect:/admin/addcontent";
+      return "redirect:/admin/add-content";
     } catch (IllegalArgumentException ex) {
       redirectAttributes.addFlashAttribute("errorMessage", ex.getMessage());
 
-      return "redirect:/admin/addcontent";
+      return "redirect:/admin/add-content";
     }
   }
 }

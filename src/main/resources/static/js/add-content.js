@@ -32,15 +32,29 @@ function updateCounter() {
   counter.textContent = `${currentLength} / ${maxLength}`;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  setInterval(function() {
-    const genres = document.getElementById("select-genres-wrapper");
-    const elements = genres.querySelectorAll("[data-title]");
+function addBackgroundToGenreBadges() {
+  const genres = document.getElementById("select-genres-wrapper");
+  const elements = genres.querySelectorAll("[data-title]");
 
-    for (const option of elements) {
-      option.parentElement.style.backgroundColor = genreColors[option.innerText.trim()];
-    }
-  }, 100);
+  for (const option of elements) {
+    option.parentElement.style.backgroundColor = genreColors[option.innerText.trim()];
+  }
+}
+
+function toggleTVFields() {
+  const typeTv = document.getElementById("hs-rtv");
+
+  const tvFields = document.getElementById("tv-fields");
+
+  if (typeTv.checked) {
+    tvFields.style.display = "block";
+  } else {
+    tvFields.style.display = "none";
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  setInterval(addBackgroundToGenreBadges, 100);
 
   const numberInputs = [
     document.getElementById("year-input"),
@@ -60,17 +74,9 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("image-input").addEventListener("change", function (event) {
     document.getElementById("image-preview").src = "https://" + event.target.value;
   });
+
+  document.getElementById("synopsis").addEventListener("input", updateCounter);
+
+  document.getElementById("hs-movie").addEventListener("change", toggleTVFields);
+  document.getElementById("hs-rtv").addEventListener("change", toggleTVFields);
 });
-
-function toggleFields() {
-  const typeMovie = document.getElementById("hs-movie");
-  const typeTv = document.getElementById("hs-rtv");
-
-  const tvFields = document.getElementById("tv-fields");
-
-  if (typeTv.checked) {
-    tvFields.style.display = "block";
-  } else {
-    tvFields.style.display = "none";
-  }
-}

@@ -22,11 +22,25 @@ public class LoginController {
     this.userService = userService;
   }
 
+  /**
+   * Displays the "Login" page.
+   *
+   * @return the name of the view template for the login page
+   */
   @GetMapping("/login")
   public String login() {
     return "login";
   }
 
+  /**
+   * Executes login, by validating user credentials and establishing a session.
+   *
+   * @param username           the username provided by the user
+   * @param password           the password provided by the user
+   * @param redirectAttributes used to pass flash attributes, such as error messages
+   * @param session            the current HTTP session to store user information upon successful login
+   * @return a redirect URL to the "Add content" page on success, or to the same page with error messages on failure
+   */
   @PostMapping("/login")
   public String handleLogin(
       @RequestParam String username,
@@ -47,7 +61,7 @@ public class LoginController {
 
       session.setAttribute("user", user);
 
-      return "redirect:/admin/addcontent";
+      return "redirect:/admin/add-content";
     } catch (NoSuchElementException e) {
       redirectAttributes.addFlashAttribute("error", "User not found");
 
@@ -59,14 +73,33 @@ public class LoginController {
     }
   }
 
+  /**
+   * Checks if a username is valid (its length is between 3 and 25 characters).
+   *
+   * @param username the username
+   * @return whether it's valid or not
+   */
   private boolean isValidUsername(String username) {
     return username.length() >= 3 && username.length() <= 25;
   }
 
+  /**
+   * Checks if a password is valid (its length is between 8 and 255 characters).
+   *
+   * @param password the password
+   * @return whether it's valid or not
+   */
   private boolean isValidPassword(String password) {
     return password.length() >= 8 && password.length() <= 255 && password.matches("[A-Za-z0-9]+");
   }
 
+  /**
+   * Hashes a password using SHA-256 with UTF-8 encoding.
+   *
+   * @param password the password
+   * @return the hashed password string
+   * @throws RuntimeException if the SHA-256 algorithm can't be found in standard libraries
+   */
   public static String hashPassword(String password) {
     try {
       MessageDigest digest = MessageDigest.getInstance("SHA-256");

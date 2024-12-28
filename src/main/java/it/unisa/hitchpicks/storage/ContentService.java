@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * A service class to do CRUD operations using Content(s).
+ * A service class to do CRUD operations using {@link Content}(s).
  * In our implementation, only the "create" operation is allowed.
  */
 @Service
@@ -17,11 +17,11 @@ public class ContentService {
   }
 
   /**
-   * Adds a Content object to the database.
+   * Adds a {@link Content} object to the database.
    *
-   * @param content - the Content object to persist
-   * @return the same Content object which was persisted
-   * @throws IllegalArgumentException if the Content is null
+   * @param content the {@link Content} object to persist
+   * @return the same {@link Content} object which was persisted
+   * @throws IllegalArgumentException if the {@link Content} is null
    */
   public Content create(Content content) {
     if (content == null) throw new IllegalArgumentException("Content object is null.");
