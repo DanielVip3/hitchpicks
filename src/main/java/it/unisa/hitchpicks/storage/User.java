@@ -1,16 +1,11 @@
 package it.unisa.hitchpicks.storage;
 
-import io.hypersistence.utils.hibernate.type.array.EnumArrayType;
-import io.hypersistence.utils.hibernate.type.array.internal.AbstractArrayType;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import java.io.Serial;
+import java.io.Serializable;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnTransformer;
-import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Length;
 
 /**
@@ -19,7 +14,10 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @Entity
 @Table(name = "user_table")
-public class User {
+public class User implements Serializable {
+  @Serial
+  private static final long serialVersionUID = 1L;
+
   @Id
   @GeneratedValue
   private Integer id;
