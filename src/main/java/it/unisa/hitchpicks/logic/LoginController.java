@@ -29,17 +29,15 @@ public class LoginController {
 
   @PostMapping("/login")
   public String handleLogin(
-          @RequestParam String username,
-          @RequestParam String password,
-          RedirectAttributes redirectAttributes,
-          HttpSession session
+      @RequestParam String username,
+      @RequestParam String password,
+      RedirectAttributes redirectAttributes,
+      HttpSession session
   ) {
-
     if (!isValidUsername(username) || !isValidPassword(password)) {
-
       redirectAttributes.addFlashAttribute("error", "Invalid username or password");
-      return "redirect:/login";
 
+      return "redirect:/login";
     }
 
     try {
@@ -49,18 +47,15 @@ public class LoginController {
 
       session.setAttribute("user", user);
 
-      return "redirect:/home";
-
+      return "redirect:/admin/addcontent";
     } catch (NoSuchElementException e) {
-
       redirectAttributes.addFlashAttribute("error", "User not found");
-      return "redirect:/login";
 
+      return "redirect:/login";
     }  catch (IllegalArgumentException e) {
-
       redirectAttributes.addFlashAttribute("error", "Incorrect username or password");
-      return "redirect:/login";
 
+      return "redirect:/login";
     }
   }
 
@@ -76,12 +71,15 @@ public class LoginController {
     try {
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
       byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
+
       StringBuilder hexString = new StringBuilder();
+
       for (byte b : hash) {
         String hex = Integer.toHexString(0xff & b);
         if (hex.length() == 1) hexString.append('0');
         hexString.append(hex);
       }
+
       return hexString.toString();
     } catch (NoSuchAlgorithmException e) {
       throw new RuntimeException("Error during password hashing", e);
