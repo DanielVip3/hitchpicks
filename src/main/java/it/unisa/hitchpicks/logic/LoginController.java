@@ -129,4 +129,22 @@ public class LoginController {
       throw new RuntimeException("Error during password hashing", e);
     }
   }
+
+  /**
+   * Displays the "Logout" functionality to authenticated users.
+   * If the user is not authenticated, he gets redirected to "Login" page.
+   * If the user is authenticated, his session gets invalidated and he gets redirected to the "Home" page.
+   *
+   * @param session the current HTTP session to check whether user is already authenticated
+   * @return the redirected url
+   */
+  @GetMapping("/logout")
+  public String logout(HttpSession session) {
+    if (session.getAttribute("user") == null) {
+      return "redirect:/login";
+    } else {
+      session.invalidate();
+      return "redirect:/";
+    }
+  }
 }
