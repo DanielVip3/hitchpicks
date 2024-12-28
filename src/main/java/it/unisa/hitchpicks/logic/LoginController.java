@@ -23,17 +23,24 @@ public class LoginController {
   }
 
   /**
-   * Displays the "Login" page.
+   * Displays the "Login" page to unauthenticated users.
+   * If the user is already authenticated, he gets redirected to "Home" page.
    *
-   * @return the name of the view template for the login page
+   * @param session the current HTTP session to check whether user is already authenticated
+   * @return the name of the view template for the "Login" page
    */
   @GetMapping("/login")
-  public String login() {
+  public String login(HttpSession session) {
+    if (session.getAttribute("user") != null) {
+      return "redirect:/";
+    }
+
     return "login";
   }
 
   /**
    * Executes login, by validating user credentials and establishing a session.
+   * Only available to unauthenticated users: if the user is already authenticated, he gets redirected to "Home" page.
    *
    * @param username           the username provided by the user
    * @param password           the password provided by the user
@@ -48,6 +55,10 @@ public class LoginController {
       RedirectAttributes redirectAttributes,
       HttpSession session
   ) {
+    if (session.getAttribute("user") != null) {
+      return "redirect:/";
+    }
+
     if (!isValidUsername(username) || !isValidPassword(password)) {
       redirectAttributes.addFlashAttribute("error", "Invalid username or password");
 
