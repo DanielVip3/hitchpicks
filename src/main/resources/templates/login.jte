@@ -1,4 +1,6 @@
+@param it.unisa.hitchpicks.storage.User user
 @param String error
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -9,7 +11,7 @@
         <link rel="stylesheet" href="/generated/css/global.css">
     </head>
     <body class="flex flex-col min-h-screen">
-        @template.components.navbar(logged = false, admin = false)
+        @template.components.navbar(user = user, admin = false)
 
         <div class="flex-grow">
             <div class="md:container md:mx-auto flex items-center justify-center">

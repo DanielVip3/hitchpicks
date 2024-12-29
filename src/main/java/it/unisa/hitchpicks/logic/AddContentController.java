@@ -1,6 +1,7 @@
 package it.unisa.hitchpicks.logic;
 
 import it.unisa.hitchpicks.storage.*;
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,30 +20,53 @@ public class AddContentController {
 
   /**
    * Displays the "Add content" page for admins.
+   * If the user is not authenticated, he gets redirected to "Login" page.
+   * If the user is authenticated but has no admin permissions, he gets redirected to "Home" page.
    *
-   * @return the name of the view template for the add content page
+   * @param session the current HTTP session to check whether user is authenticated and has admin permissions
+   * @return the name of the view template for the "Add content" page
    */
   @GetMapping("/admin/add-content")
-  public String addContent() {
+  public String addContent(HttpSession session) {
+    if (session.getAttribute("user") == null) {
+      return "redirect:/login";
+    }
+
+    if (!((User) session.getAttribute("user")).getAdmin()) {
+      return "redirect:/";
+    }
+
     return "add-content";
   }
 
   /**
    * Adds new content by validating the provided {@link Content} object and saving it.
    * It's called by a form in the "Add content" page, by admins.
+   * If the user is not authenticated, he gets redirected to "Login" page.
+   * If the user is authenticated but has no admin permissions, he gets redirected to "Home" page.
    *
    * @param content            the content object to be added, populated from the form submission
    * @param bindingResult      contains validation results for the {@code content} object
    * @param redirectAttributes used to pass flash attributes, such as error messages
+   * @param session            the current HTTP session to check whether user is authenticated and has admin permissions
    * @return a redirect URL to the same page on success, or with error messages on failure
    */
   @PostMapping("/admin/add-content")
   public String handleAddContent(
       @Valid @ModelAttribute Content content,
       BindingResult bindingResult,
-      RedirectAttributes redirectAttributes
+      RedirectAttributes redirectAttributes,
+      HttpSession session
   ) {
     try {
+      if (session.getAttribute("user") == null) {
+        return "redirect:/login";
+      }
+
+      if (!((User) session.getAttribute("user")).getAdmin()) {
+        return "redirect:/";
+      }
+
       if (bindingResult.hasErrors()) {
         throw new IllegalArgumentException(bindingResult.getAllErrors().getFirst().getDefaultMessage());
       }

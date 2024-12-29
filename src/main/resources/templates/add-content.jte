@@ -1,3 +1,4 @@
+@param it.unisa.hitchpicks.storage.User user
 @param String errorMessage
 @param String successMessage
 
@@ -9,7 +10,7 @@
         <link rel="stylesheet" href="/generated/css/global.css">
     </head>
     <body>
-        @template.components.navbar(logged = true, admin = true)
+        @template.components.navbar(user = user, admin = true)
 
         @template.components.sidebar-admin()
 
