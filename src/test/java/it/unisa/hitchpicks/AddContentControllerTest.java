@@ -106,13 +106,10 @@ public class AddContentControllerTest {
     assertEquals(result, "redirect:/admin/add-content");
   }
 
-  /* NOTE: this test is temporary and done to show an example of test. */
   @Test
-  public void handleAddContent_film_success() {
+  public void handleAddContent_movieSuccess() {
     Content content = new Content();
-    content.setImage("https://www.google.com/url?sa=i&url=https%3A%2F%2Fcinema.everyeye.it%2Farticoli%" +
-            "2Fspeciale-top-5-cinepanettoni-28093.html&psig=AOvVaw1Uka7QcORG6Vm96qDV4D03&ust=17343866349" +
-            "16000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCMD8mubjqooDFQAAAAAdAAAAABAE");
+    content.setImage("https://m.media-amazon.com/images/M/MV5BMGY5YzkwN2EtOWI3Zi00ZmNjLThkM2YtM2NlNTczYjUxMDczXkEyXkFqcGc@._V1_.jpg");
     content.setTitle("Merry Christmas");
     content.setType(ContentType.MOVIE);
     content.setState(ContentState.RELEASED);
@@ -128,7 +125,7 @@ public class AddContentControllerTest {
   }
 
   @Test
-  public void handleAddContent_TV_success() {
+  public void handleAddContent_TVSuccess() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -152,7 +149,7 @@ public class AddContentControllerTest {
   }
 
   @Test
-  public void handleAddContent_invalid_image() {
+  public void handleAddContent_invalidImage() {
     Content content = new Content();
     content.setImage("httpesse://%$££$”$%&/”£$%”£$%£$%£$.jpg");
     content.setTitle("Breaking Bad");
@@ -177,7 +174,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_title() {
+  public void handleAddContent_invalidTitle() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Badddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd" +
@@ -204,7 +201,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_duration1() {
+  public void handleAddContent_invalidDuration1() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -229,7 +226,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_duration2() {
+  public void handleAddContent_invalidDuration2() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -254,7 +251,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_year1() {
+  public void handleAddContent_invalidYear1() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -279,7 +276,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_year2() {
+  public void handleAddContent_invalidYear2() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -303,7 +300,7 @@ public class AddContentControllerTest {
   }
 
   @Test
-  public void handleAddContent_invalid_IdIMDB() {
+  public void handleAddContent_invalidIdIMDB() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -328,7 +325,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_seasonsNumber1() {
+  public void handleAddContent_invalidSeasonsNumber1() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -352,7 +349,7 @@ public class AddContentControllerTest {
   }
 
   @Test
-  public void handleAddContent_invalid_seasonsNumber2() {
+  public void handleAddContent_invalidSeasonsNumber2() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -377,7 +374,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_episodesNumber1() {
+  public void handleAddContent_invalidEpisodesNumber1() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -403,7 +400,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_episodesNumber2() {
+  public void handleAddContent_invalidEpisodesNumber2() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -428,7 +425,7 @@ public class AddContentControllerTest {
 
 
   @Test
-  public void handleAddContent_invalid_episodesTotalNumber1() {
+  public void handleAddContent_invalidTotalEpisodesNumber1() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -452,7 +449,7 @@ public class AddContentControllerTest {
   }
 
   @Test
-  public void handleAddContent_invalid_episodesTotalNumber2() {
+  public void handleAddContent_invalidTotalEpisodesNumber2() {
     Content content = new Content();
     content.setImage("https://cdn.bestmovie.it/wp-content/uploads/2020/05/breaking-bad-1.jpg");
     content.setTitle("Breaking Bad");
@@ -474,5 +471,4 @@ public class AddContentControllerTest {
 
     assertErrorHandleAddContent(content);
   }
-
 }
