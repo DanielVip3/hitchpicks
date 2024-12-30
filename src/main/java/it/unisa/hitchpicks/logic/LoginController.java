@@ -91,7 +91,7 @@ public class LoginController {
    * @return whether it's valid or not
    */
   private boolean isValidUsername(String username) {
-    return username.length() >= 3 && username.length() <= 25;
+    return username.length() > 3 && username.length() <= 25;
   }
 
   /**
@@ -101,7 +101,8 @@ public class LoginController {
    * @return whether it's valid or not
    */
   private boolean isValidPassword(String password) {
-    return password.length() >= 8 && password.length() <= 255 && password.matches("[A-Za-z0-9]+");
+    return password.length() > 8 && password.length() <= 255 && password.matches(".*[A-Za-z].*")
+            && password.matches(".*[0-9].*");
   }
 
   /**

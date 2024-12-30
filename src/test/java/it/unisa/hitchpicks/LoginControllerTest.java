@@ -15,7 +15,12 @@ import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.lang.reflect.Method;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -44,9 +49,9 @@ public class LoginControllerTest {
     // this user is the one present in database, which we can login to
     user = new User();
     user.setAdmin(true);
-    user.setName("Test user");
+    user.setName("Gianfranco Lazlo");
     user.setTag("test");
-    user.setPassword("Test1234");
+    user.setPassword("iloveshrek3");
     user.setEmail("test@test.com");
 
     Mockito.when(userService.find(user.getName(), user.getPassword())).thenReturn(user);
@@ -61,9 +66,69 @@ public class LoginControllerTest {
     String result = loginController.handleLogin(user.getName(), "a", redirectAttributes, httpSession);
 
     // checks if error message is set
-    verify(redirectAttributes).addFlashAttribute(Mockito.eq("error"), Mockito.anyString());
+    verify(redirectAttributes).addFlashAttribute(eq("error"), Mockito.anyString());
 
     // checks if it redirects to same page
     assertEquals(result, "redirect:/login");
+  }
+
+  @Test
+  public void handleLogin_errorLongPassword() {
+    String result = loginController.handleLogin(user.getName(),
+            "Lorem ipsum dolor sit amet5, consectetur adipiscing elit. Donec a odio ligula. Suspendisse tempor elit eu sem tincidunt ultricies. Aenean nunc mi, molestie sit amet dolor quis, lobortis hendrerit mi. Quisque quis luctus leo, sit amet aliquam risus. Suspendisse porttitor nisi eget risus porta dignissim" ,
+            redirectAttributes, httpSession);
+
+    verify(redirectAttributes).addFlashAttribute(eq("error"), Mockito.anyString());
+
+    assertEquals(result, "redirect:/login");
+  }
+
+  @Test
+  public void handleLogin_errorShortUsername() {
+    String result = loginController.handleLogin("Gia", user.getPassword(), redirectAttributes, httpSession);
+
+    verify(redirectAttributes).addFlashAttribute(eq("error"), Mockito.anyString());
+
+    assertEquals(result, "redirect:/login");
+  }
+
+  @Test
+  public void handleLogin_errorNumericalPassword() {
+    String result = loginController.handleLogin(user.getName(), "09112001", redirectAttributes, httpSession);
+
+    verify(redirectAttributes).addFlashAttribute(eq("error"), Mockito.anyString());
+
+    assertEquals(result, "redirect:/login");
+  }
+
+  @Test
+  public void handleLogin_errorLongUsername() {
+    String result = loginController.handleLogin("Antonio Grio Focas Flavio Angelo Ducas Comneno Porrogenito Gagliardi De Curtis di Bisanzio",
+                    user.getPassword(), redirectAttributes, httpSession);
+
+    verify(redirectAttributes).addFlashAttribute(eq("error"), Mockito.anyString());
+
+    assertEquals(result, "redirect:/login");
+  }
+
+  @Test
+  public void handleLogin_errorAlphabeticalPassword() {
+    String result = loginController.handleLogin(user.getName(), "abcdefghijklmnopqrstuvz", redirectAttributes, httpSession);
+
+    verify(redirectAttributes).addFlashAttribute(eq("error"), Mockito.anyString());
+
+    assertEquals(result, "redirect:/login");
+  }
+
+  @Test
+  public void handleLogin_successfulAuthentication() {
+    String result = loginController.handleLogin(user.getName(), user.getPassword(), redirectAttributes, httpSession);
+
+    verify(redirectAttributes, never()).addFlashAttribute(eq("error"), Mockito.anyString());
+
+    // Verify that the "user" attribute was correctly retrieved from the session
+    Mockito.verify(httpSession).getAttribute("user");
+
+    assertEquals(result, "redirect:/admin/add-content");
   }
 }
