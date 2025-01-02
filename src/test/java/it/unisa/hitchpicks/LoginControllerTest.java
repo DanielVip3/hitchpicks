@@ -131,4 +131,24 @@ public class LoginControllerTest {
 
     assertEquals(result, "redirect:/admin/add-content");
   }
+
+  @Test
+  public void logout_error() {
+    String result = loginController.logout(httpSession);
+
+    assertEquals(result, "redirect:/login");
+  }
+
+  @Test
+  public void logout_success() {
+    Mockito.when(httpSession.getAttribute("user")).thenReturn(user);
+
+    String result = loginController.logout(httpSession);
+
+    verify(httpSession).invalidate();
+
+    assertEquals(result, "redirect:/");
+  }
+
 }
+
