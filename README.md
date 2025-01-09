@@ -2,7 +2,9 @@
 
 Hitchpicks is a web app to track your watched movies and TV shows.
 
-This README is W.I.P.!
+It was built as a project for the course of Software Engineering of the Computer Science faculty, Università degli Studi di Salerno.
+
+Following instructions are for team members contributing to the project.
 
 ## Commit structure
 
